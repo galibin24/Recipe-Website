@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./components/Header";
 import RecipeList from "./components/recipeList";
+import Header from "./components/Header";
 import RecipePage from "./components/RecipePage";
 import { Provider } from "react-redux";
 import store from "./store";

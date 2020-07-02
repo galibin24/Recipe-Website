@@ -1,14 +1,12 @@
 import { types } from "../../actions/types";
 
-const initialState = {
-	recipe: {},
-};
+const initialState = {};
 
 export const RecipePageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.UPDATE_RECIPE:
 			return Object.assign({}, state, {
-				recipes: [...state.recipes, action.payload],
+				recipes: {...state.recipe, action.payload]},
 			});
 		case types.DELETE_RECIPE:
 			return Object.assign({}, state, {
