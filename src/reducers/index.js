@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { recipesReducer } from "./recipesReducer";
+import { listPageReducer } from "./listPageReducer";
 
 export const rootReducer = combineReducers({
-    recipes: recipesReducer
+	listPageReducer: listPageReducer,
 });

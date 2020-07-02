@@ -2,16 +2,26 @@ import React from "react";
 import RecipeItem from "./RecipeItem";
 import AddRecipe from "./AddRecipe";
 import { useSelector } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+
+import "./style.scss";
 
 const RecipeList = (props) => {
-  //   const recipyList = useSelector();
-  return (
-    <div>
-      <h1>Recipe List</h1>
-      <RecipeItem />
-      <AddRecipe />
-    </div>
-  );
+	const recipeList = useSelector((state) => state.listPageReducer.recipes);
+	console.log(recipeList);
+	return (
+		<div>
+			<h1 className="recipeList">Recipe List</h1>
+			{recipeList.length > 0 &&
+				recipeList.map((recipe) => <RecipeItem {...recipe} key={recipe.id} />)}
+			{recipeList.length === 0 && (
+				<p className="addItem">
+					Please, add a recipe by clicking the button below.
+				</p>
+			)}
+			<AddRecipe />
+		</div>
+	);
 };
 
 export default RecipeList;
