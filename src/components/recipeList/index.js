@@ -1,6 +1,6 @@
 import React from "react";
-import RecipeItem from "./RecipeItem";
-import AddRecipe from "./AddRecipe";
+import RecipeItem from "./recipeItem";
+import AddRecipe from "./addRecipe";
 import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 

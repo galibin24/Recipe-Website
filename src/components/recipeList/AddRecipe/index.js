@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.scss";
-import RecipeForm from "../../RecipeForm";
+import RecipeForm from "../../recipeForm";
 
 import Button from "react-bootstrap/Button";
 
