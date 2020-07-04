@@ -1,9 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { rootReducer } from "./reducers";
-import { loadState, saveState } from "./LocalStorage";
-
-const initialState = loadState();
 
 const middleware = [thunk];
 
@@ -19,12 +16,12 @@ const enhancer = composeEnhancers(
 	// other store enhancers if any
 );
 
-const store = createStore(rootReducer, initialState, enhancer);
+const store = createStore(rootReducer, enhancer);
 
-store.subscribe(() => {
-	saveState({
-		listPageReducer: store.getState().listPageReducer,
-	});
-});
+// store.subscribe(() => {
+// 	saveRecipes({
+// 		recipes: store.getState().listPageReducer.recipes,
+// 	});
+// });
 
 export default store;

@@ -2,13 +2,11 @@ import React from "react";
 import RecipeItem from "./recipeItem";
 import AddRecipe from "./addRecipe";
 import { useSelector } from "react-redux";
-import { Switch, Route } from "react-router-dom";
 
 import "./style.scss";
 
 const RecipeList = (props) => {
 	const recipeList = useSelector((state) => state.listPageReducer.recipes);
-	console.log(recipeList);
 	return (
 		<div>
 			<h1 className="recipeList">Recipe List</h1>

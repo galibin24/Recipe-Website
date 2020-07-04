@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addRecipe } from "../../actions/addRecipe";
-
+import { updateRecipe } from "../../actions/updateRecipe";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -20,17 +20,39 @@ const validationSchema = Yup.object().shape({
 		.required("*Description is required"),
 });
 
+const InitialValues = (props) => {
+	if (!props.recipe) {
+		return {
+			values: {
+				Title: "",
+				Description: "",
+			},
+			new: false,
+		};
+	}
+	return {
+		values: {
+			Title: props.recipe.Title,
+			Description: props.recipe.Description,
+		},
+		new: true,
+	};
+};
+
 const RecipeForm = (props) => {
 	const dispatch = useDispatch();
 
 	const formik = useFormik({
-		initialValues: {
-			Title: "",
-			Description: "",
-		},
+		initialValues: InitialValues(props).values,
+
 		onSubmit: (values) => {
-			console.log(values);
-			dispatch(addRecipe(values));
+			if (!InitialValues(props).new) {
+				dispatch(addRecipe(values));
+				props.Close();
+			}
+			values = { ...values, id: props.recipe.id };
+			dispatch(updateRecipe(values));
+			props.Close();
 		},
 		validationSchema: validationSchema,
 	});

@@ -16,7 +16,7 @@ function App() {
 					<Container>
 						<Header />
 						<Route path="/" exact component={RecipeList} />
-						<Route path="/:id" component={RecipePage} />
+						<Route path="/:id" render={(props) => <RecipePage {...props} />} />
 					</Container>
 				</Switch>
 			</Router>

@@ -1,9 +1,10 @@
 import { types } from "./types";
-import { v4 } from "uuid";
-export const addRecipe = (recipeNoID) => {
-	const recipe = Object.assign({}, recipeNoID, { id: v4() });
-	return {
-		type: types.ADD_RECIPE,
-		payload: recipe,
-	};
+import { addRecipeFromApi } from "../LocalStorage";
+export const addRecipe = (recipeNoID) => async (dispatch) => {
+	await addRecipeFromApi(recipeNoID).then((recipes) => {
+		dispatch({
+			type: types.ADD_RECIPE,
+			payload: recipes,
+		});
+	});
 };
