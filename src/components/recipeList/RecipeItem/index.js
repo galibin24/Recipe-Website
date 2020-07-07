@@ -19,7 +19,7 @@ const RecipeItem = (props) => {
 			<p>{props.Description}</p>
 
 			<p>
-				<Link to={`/${props.id}`}>
+				<Link to={`/recipe/${props.id}`}>
 					<Button variant="primary">Look At the Recipe</Button>
 				</Link>
 			</p>

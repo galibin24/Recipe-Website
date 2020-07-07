@@ -24,7 +24,7 @@ const DeleteRecipe = (props) => {
 			<Button className="button" onClick={Show}>
 				Delete Recipe
 			</Button>
-			<Modal show={show}>
+			<Modal show={show} onHide={Close}>
 				<Modal.Header>
 					<Modal.Title>
 						Are you sure you want to delete this recipe?

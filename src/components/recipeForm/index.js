@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik } from "formik";
+import { useFormik, Form as FormF, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addRecipe } from "../../actions/addRecipe";
@@ -27,7 +27,7 @@ const InitialValues = (props) => {
 				Title: "",
 				Description: "",
 			},
-			new: false,
+			new: true,
 		};
 	}
 	return {
@@ -35,7 +35,7 @@ const InitialValues = (props) => {
 			Title: props.recipe.Title,
 			Description: props.recipe.Description,
 		},
-		new: true,
+		new: false,
 	};
 };
 
@@ -46,7 +46,7 @@ const RecipeForm = (props) => {
 		initialValues: InitialValues(props).values,
 
 		onSubmit: (values) => {
-			if (!InitialValues(props).new) {
+			if (InitialValues(props).new) {
 				dispatch(addRecipe(values));
 				props.Close();
 			}
@@ -55,7 +55,10 @@ const RecipeForm = (props) => {
 			props.Close();
 		},
 		validationSchema: validationSchema,
+		validateOnChange: true,
+		validateOnBlur: true,
 	});
+	console.log(formik.errors);
 	return (
 		<Modal show={props.show} size="lg">
 			<Modal.Dialog>
@@ -64,34 +67,32 @@ const RecipeForm = (props) => {
 				</Modal.Header>
 
 				<Modal.Body>
-					<Form id="recipe-form" onSubmit={formik.handleSubmit}>
-						<Form.Group controlId="formTitle">
-							<Form.Label>Title of the recipe.</Form.Label>
-							<Form.Control
-								name="Title"
-								type="text"
-								onChange={formik.handleChange}
-								value={formik.values.Title}
-							/>
-							{formik.touched.Title && formik.errors.Title ? (
-								<div className="error-message">{formik.errors.Title}</div>
-							) : null}
-						</Form.Group>
-						<Form.Group controlId="formDescription">
-							<Form.Label>Description of the recipe.</Form.Label>
-							<Form.Control
-								size="lg"
-								as="textarea"
-								name="Description"
-								type="text"
-								onChange={formik.handleChange}
-								value={formik.values.Description}
-							/>
-							{formik.touched.Description && formik.errors.Description ? (
-								<div className="error-message">{formik.errors.Description}</div>
-							) : null}
-						</Form.Group>
-					</Form>
+					<form id="recipe-form" onSubmit={formik.handleSubmit}>
+						<label htmlFor="Title">Title</label>
+						<input
+							id="Title"
+							name="Title"
+							type="text"
+							onChange={formik.handleChange}
+							value={formik.values.Title}
+						/>
+						{formik.errors.Title && (
+							<div className="error-message">{formik.errors.Title}</div>
+						)}
+						<button type="submit">Submit</button>
+						<label htmlFor="Description">Description</label>
+						<input
+							id="Description"
+							name="Description"
+							type="text"
+							onChange={formik.handleChange}
+							value={formik.values.Description}
+						/>
+						{formik.errors.Description && (
+							<div className="error-message">{formik.errors.Description}</div>
+						)}
+						<button type="submit">Submit</button>
+					</form>
 				</Modal.Body>
 
 				<Modal.Footer>

@@ -1,6 +1,7 @@
 export const types = {
-	ADD_RECIPE: "addRecipe",
-	DELETE_RECIPE: "deleteRecipe",
-	UPDATE_RECIPE: "updateRecipe",
-	GET_RECIPE: "getRecipe",
+	ADD_RECIPE: "ADD_RECIPE",
+	DELETE_RECIPE: "DELETE_RECIPE",
+	UPDATE_RECIPE: "UPDATE_RECIPE",
+	GET_RECIPE: "GET_RECIPE",
+	RECIEVE_RECIPES: "RECIEVE_RECIPES",
 };

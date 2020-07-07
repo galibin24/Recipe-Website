@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { recieveRecipes } from "../../actions/recieveRecipes";
 import RecipeItem from "./recipeItem";
 import AddRecipe from "./addRecipe";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
 
 const RecipeList = (props) => {
+	const dispatch = useDispatch();
+
+	const fetchRecipes = () => {
+		dispatch(recieveRecipes());
+	};
+
+	useEffect(fetchRecipes, []);
 	const recipeList = useSelector((state) => state.listPageReducer.recipes);
 	return (
 		<div>

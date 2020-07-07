@@ -1,12 +1,16 @@
 import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import RecipeList from "./components/recipeList";
 import Header from "./components/header";
 import RecipePage from "./components/recipePage";
-import { Provider } from "react-redux";
 import store from "./store";
+
 import "./style.scss";
 import Container from "react-bootstrap/Container";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// don't use react-bootstrap, just vanila bootstrap
 
 function App() {
 	return (
@@ -16,7 +20,7 @@ function App() {
 					<Container>
 						<Header />
 						<Route path="/" exact component={RecipeList} />
-						<Route path="/:id" render={(props) => <RecipePage {...props} />} />
+						<Route path="/recipe/:id" component={RecipePage} />
 					</Container>
 				</Switch>
 			</Router>

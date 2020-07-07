@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
 import { getImage } from "./Unsplash";
 
-export const loadRecipes = () => {
+export const fetchRecipes = () => {
 	try {
 		const serializedrecipes = localStorage.getItem("recipes");
 		if (serializedrecipes === null) {
@@ -71,24 +71,20 @@ export const getRecipefromApi = (id) => {
 export const updateRecipeFromApi = async (newRecipe) => {
 	try {
 		const parsedRecipe = JSON.parse(localStorage.getItem("recipes"));
-		let recipes;
-		await getImage(`${newRecipe.Title} + dish`)
-			.then((imageUrl) => {
-				const recipe = Object.assign({}, newRecipe, { imageUrl });
-				return recipe;
-			})
-			.then((newRecipe) => {
-				recipes = parsedRecipe.map((oldRecipe, index) => {
-					if (oldRecipe.id === newRecipe.id) {
-						return (parsedRecipe[index] = newRecipe);
-					}
-					return oldRecipe;
-				});
-
-				const serializedrecipes = JSON.stringify(recipes);
-				localStorage.setItem("recipes", serializedrecipes);
-				return recipes;
+		let recipe;
+		await getImage(`${newRecipe.Title} + dish`).then((imageUrl) => {
+			recipe = Object.assign({}, newRecipe, { imageUrl });
+			let recipes = parsedRecipe.map((oldRecipe, index) => {
+				if (oldRecipe.id === recipe.id) {
+					return (parsedRecipe[index] = recipe);
+				}
+				return oldRecipe;
 			});
-		return recipes;
+
+			const serializedrecipes = JSON.stringify(recipes);
+			localStorage.setItem("recipes", serializedrecipes);
+		});
+
+		return recipe;
 	} catch (err) {}
 };
