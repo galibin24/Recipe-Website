@@ -4,9 +4,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addRecipe } from "../../actions/addRecipe";
 import { updateRecipe } from "../../actions/updateRecipe";
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 
 import "./style.scss";
 
@@ -60,13 +58,10 @@ const RecipeForm = (props) => {
 	});
 	console.log(formik.errors);
 	return (
-		<Modal show={props.show} size="lg">
-			<Modal.Dialog>
-				<Modal.Header>
-					<Modal.Title>Enter your recipe information.</Modal.Title>
-				</Modal.Header>
-
-				<Modal.Body>
+		<div className="Custom-modal">
+			<div className="content">
+				<div className="header">Please enter your information here.</div>
+				<div className="body">
 					<form id="recipe-form" onSubmit={formik.handleSubmit}>
 						<label htmlFor="Title">Title</label>
 						<input
@@ -79,7 +74,6 @@ const RecipeForm = (props) => {
 						{formik.errors.Title && (
 							<div className="error-message">{formik.errors.Title}</div>
 						)}
-						<button type="submit">Submit</button>
 						<label htmlFor="Description">Description</label>
 						<input
 							id="Description"
@@ -91,20 +85,18 @@ const RecipeForm = (props) => {
 						{formik.errors.Description && (
 							<div className="error-message">{formik.errors.Description}</div>
 						)}
-						<button type="submit">Submit</button>
 					</form>
-				</Modal.Body>
-
-				<Modal.Footer>
-					<Button variant="secondary" onClick={props.Close}>
+				</div>
+				<div className="footer">
+					<button className="c-button" onClick={props.Close}>
 						Close
-					</Button>
-					<Button form="recipe-form" type="submit" variant="primary">
+					</button>
+					<button className="c-button" form="recipe-form" type="submit">
 						Save the recipe
-					</Button>
-				</Modal.Footer>
-			</Modal.Dialog>
-		</Modal>
+					</button>
+				</div>
+			</div>
+		</div>
 	);
 };
 
