@@ -1,10 +1,16 @@
 import { types } from "./types";
-import { updateRecipeFromApi } from "../LocalStorage";
+import axios from "axios";
 
 export const updateRecipe = (newRecipe) => async (dispatch) => {
-	console.log("UPDATE");
-	await updateRecipeFromApi(newRecipe).then((recipe) => {
-		console.log(recipe);
+	await axios({
+		method: "post",
+		url: "http://127.0.0.1:8000/api/recipes/",
+		data: {
+			Title: newRecipe.Title,
+			Description: newRecipe.Description,
+		},
+	}).then((recipe) => {
+		recipe = recipe.data;
 		dispatch({
 			type: types.UPDATE_RECIPE,
 			payload: recipe,

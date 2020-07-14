@@ -14,6 +14,7 @@ const RecipeList = (props) => {
 
 	useEffect(fetchRecipes, []);
 	const recipeList = useSelector((state) => state.listPageReducer.recipes);
+	console.log(recipeList);
 	return (
 		<div>
 			<h1 className="recipeList">Recipe List</h1>
