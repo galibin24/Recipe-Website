@@ -1,17 +1,32 @@
-import React from "react";
-import RecipeItem from "./RecipeItem";
-import AddRecipe from "./AddRecipe";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { recieveRecipes } from "../../actions/recieveRecipes";
+import RecipeItem from "./recipeItem";
+import AddRecipe from "./addRecipe";
+import { useSelector, useDispatch } from "react-redux";
+import "./style.scss";
 
 const RecipeList = (props) => {
-  //   const recipyList = useSelector();
-  return (
-    <div>
-      <h1>Recipe List</h1>
-      <RecipeItem />
-      <AddRecipe />
-    </div>
-  );
+	const dispatch = useDispatch();
+
+	const fetchRecipes = () => {
+		dispatch(recieveRecipes());
+	};
+
+	useEffect(fetchRecipes, []);
+	const recipeList = useSelector((state) => state.listPageReducer.recipes);
+	return (
+		<div>
+			<h1 className="recipeList">Recipe List</h1>
+			{recipeList.length > 0 &&
+				recipeList.map((recipe) => <RecipeItem {...recipe} key={recipe.id} />)}
+			{recipeList.length === 0 && (
+				<p className="addItem">
+					Please, add a recipe by clicking the button below.
+				</p>
+			)}
+			<AddRecipe />
+		</div>
+	);
 };
 
 export default RecipeList;

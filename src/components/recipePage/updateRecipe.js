@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import "./style.scss";
-import RecipeForm from "../../recipeForm";
-
+import RecipeForm from "../recipeForm";
 import Button from "react-bootstrap/Button";
 
-const AddRecipe = (props) => {
+const UpdateRecipe = (props) => {
 	const [show, setShow] = useState(false);
 
 	let Show = () => setShow(true);
 	let Close = () => setShow(false);
-
 	return (
 		<div>
-			<Button variant="primary" onClick={Show}>
-				Add New Recipe
+			<Button className="button" onClick={Show}>
+				Change Recipe
 			</Button>
-			{show && <RecipeForm Close={Close} show={show} />}
+			{show && <RecipeForm Close={Close} show={show} recipe={props.recipe} />}
 		</div>
 	);
 };
 
-export default AddRecipe;
+export default UpdateRecipe;
