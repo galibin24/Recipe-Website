@@ -1,12 +1,16 @@
 import { types } from "./types";
-import { getRecipefromApi } from "../LocalStorage";
+import axios from "axios";
 
-export const getRecipe = (id) => {
-	console.log("GET");
-	console.log(id);
-	let recipe = getRecipefromApi(id);
-	return {
-		type: types.GET_RECIPE,
-		payload: recipe,
-	};
+export const getRecipe = (id) => async (dispatch) => {
+	const link = `${process.env.REACT_APP_RECIPE_API}/api/recipes/${id}`;
+	await axios({
+		method: "get",
+		url: link,
+	}).then((response) => {
+		const recipe = response.data;
+		dispatch({
+			type: types.GET_RECIPE,
+			payload: recipe,
+		});
+	});
 };

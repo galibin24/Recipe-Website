@@ -12,7 +12,7 @@ const RecipeItem = (props) => {
 	const handleDelete = (id) => {
 		dispatch(deleteRecipe(id));
 	};
-
+	console.log(props);
 	return (
 		<Jumbotron>
 			<h1>{props.Title}</h1>

@@ -56,7 +56,6 @@ const RecipeForm = (props) => {
 		validateOnChange: true,
 		validateOnBlur: true,
 	});
-	console.log(formik.errors);
 	return (
 		<div className="Custom-modal">
 			<div className="content">
