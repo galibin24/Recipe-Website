@@ -10,6 +10,9 @@ import store from "./store";
 import "./style.scss";
 import Container from "react-bootstrap/Container";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // don't use react-bootstrap, just vanila bootstrap
 
 function App() {

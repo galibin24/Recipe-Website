@@ -4,9 +4,9 @@ import axios from "axios";
 export const recieveRecipes = () => async (dispatch) => {
 	await axios({
 		method: "get",
-		url: "http://127.0.0.1:8000/api/recipes/",
-	}).then((recipes) => {
-		recipes = recipes.data;
+		url: `${process.env.REACT_APP_RECIPE_API}/api/recipes/`,
+	}).then((response) => {
+		const recipes = response.data;
 		dispatch({
 			type: types.RECIEVE_RECIPES,
 			payload: recipes,
