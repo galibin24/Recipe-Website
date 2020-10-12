@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { recieveRecipes } from "../../actions/recieveRecipes";
-import RecipeItem from "./recipeItem";
+import { recieveRecipes } from "../../../../actions/recieveRecipes";
+import RecipeItem from "../../recipeItem";
 import { useSelector, useDispatch } from "react-redux";
-import "./style.scss";
-import { Pagination } from "./pagination";
+import "../../style.scss";
+import { Pagination } from "../../pagination";
 
-const RecipeList = (props) => {
+const Lunch = (props) => {
 	// pagination variables
 	const [perPage, setPerPage] = useState(6);
 	const [leftSlice, setLeftSlice] = useState(0);
@@ -113,6 +113,7 @@ const RecipeList = (props) => {
 				<div className="row justify-content-centre">
 					{recipeList.length > 0 &&
 						recipeList
+							.filter((recipe) => recipe.recipe_type === "Lunch")
 							.sort(sortingFunc)
 							.map((recipe) => <RecipeItem {...recipe} key={recipe.id} />)
 							.slice(leftSlice, rightSlice)}
@@ -122,4 +123,4 @@ const RecipeList = (props) => {
 	);
 };
 
-export default RecipeList;
+export default Lunch;

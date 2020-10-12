@@ -1,10 +1,9 @@
 import React from "react";
-import { useFormik, Form as FormF, Field } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addRecipe } from "../../actions/addRecipe";
 import { updateRecipe } from "../../actions/updateRecipe";
-import Button from "react-bootstrap/Button";
 
 import "./style.scss";
 
@@ -16,6 +15,10 @@ const validationSchema = Yup.object().shape({
 	Description: Yup.string()
 		.min(5, "*Description must have at least 5 characters")
 		.required("*Description is required"),
+	preperation_minutes: Yup.number()
+		.max(9999, "*Please enter a number in this field")
+		.required("This field is required"),
+	recipe_type: Yup.string().required("Please choose the type of your recipe."),
 });
 
 const InitialValues = (props) => {
@@ -24,6 +27,8 @@ const InitialValues = (props) => {
 			values: {
 				Title: "",
 				Description: "",
+				recipe_type: "",
+				preperation_minutes: "",
 			},
 			new: true,
 		};
@@ -40,6 +45,9 @@ const InitialValues = (props) => {
 const RecipeForm = (props) => {
 	const dispatch = useDispatch();
 
+	const closeModal = () => {
+		setTimeout(() => props.Close());
+	};
 	const formik = useFormik({
 		initialValues: InitialValues(props).values,
 
@@ -59,38 +67,89 @@ const RecipeForm = (props) => {
 	return (
 		<div className="Custom-modal">
 			<div className="content">
-				<div className="header">Please enter your information here.</div>
+				<div className="header">Please enter your recipe</div>
 				<div className="body">
 					<form id="recipe-form" onSubmit={formik.handleSubmit}>
-						<label htmlFor="Title">Title</label>
-						<input
-							id="Title"
-							name="Title"
-							type="text"
-							onChange={formik.handleChange}
-							value={formik.values.Title}
-						/>
-						{formik.errors.Title && (
-							<div className="error-message">{formik.errors.Title}</div>
-						)}
-						<label htmlFor="Description">Description</label>
-						<input
-							id="Description"
-							name="Description"
-							type="text"
-							onChange={formik.handleChange}
-							value={formik.values.Description}
-						/>
-						{formik.errors.Description && (
-							<div className="error-message">{formik.errors.Description}</div>
-						)}
+						<div className="form-group">
+							<label className="titleLabel" htmlFor="Title">
+								Recipe Title
+							</label>
+							<input
+								className="form-control"
+								id="Title"
+								name="Title"
+								type="text"
+								onChange={formik.handleChange}
+								value={formik.values.Title}
+							/>
+							{formik.errors.Title && (
+								<div className="error-message">{formik.errors.Title}</div>
+							)}
+						</div>
+
+						<div className="form-group" aria-label="With textarea">
+							<label className="descriptionLabel" htmlFor="Description">
+								Recipe Description
+							</label>
+							<textarea
+								class="form-control"
+								aria-label="With textarea"
+								id="Description"
+								name="Description"
+								type="text"
+								onChange={formik.handleChange}
+								value={formik.values.Description}
+							/>
+							{formik.errors.Description && (
+								<div className="error-message">{formik.errors.Description}</div>
+							)}
+						</div>
+						<div className="form-group">
+							<label>Minutes to prepare</label>
+							<input
+								className="form-control"
+								id="preperation_minutes"
+								name="preperation_minutes"
+								type="text"
+								onChange={formik.handleChange}
+								value={formik.values.preperation_minutes}
+							/>
+							{formik.errors.preperation_minutes && (
+								<div className="error-message">
+									{formik.errors.preperation_minutes}
+								</div>
+							)}
+						</div>
+						<div className="form-group">
+							<label for="recipe_type">Choose you recipe type</label>
+							<select
+								className="form-control"
+								id="recipe_type"
+								name="recipe_type"
+								type="text"
+								onChange={formik.handleChange}
+								value={formik.values.recipe_type}
+							>
+								<option value="DI">Dinner</option>
+								<option value="DE">Lunch</option>
+								<option value="LH">Dessert</option>
+							</select>
+							{formik.errors.recipe_type && (
+								<div className="error-message">{formik.errors.recipe_type}</div>
+							)}
+						</div>
 					</form>
 				</div>
 				<div className="footer">
-					<button className="c-button" onClick={props.Close}>
+					<button className="btn btn-warning buttons" onClick={closeModal}>
 						Close
 					</button>
-					<button className="c-button" form="recipe-form" type="submit">
+
+					<button
+						className="btn btn-warning buttons"
+						form="recipe-form"
+						type="submit"
+					>
 						Save the recipe
 					</button>
 				</div>

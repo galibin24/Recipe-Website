@@ -3,3 +3,94 @@
 
 // /* import bootstrap to set changes */
 // @import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Unna&display=swap");
+
+.recipeLabel {
+	font-size: 12px;
+	color: #f4952f;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+.recipeTime {
+	font-size: 12px;
+	font-weight: 700;
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+.special {
+	// margin-right: 20px;
+	// margin-bottom: 20px;
+	// margin-left: 2px;
+	// padding-left: 135px;
+}
+.recipeCreator {
+}
+.recipeText {
+	text-align: left;
+	// margin-right: 50px;
+	margin-left: 5px;
+}
+
+.listul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+.listspan {
+	color: #111111;
+	list-style: none;
+	display: inline-block;
+	margin-right: 25px;
+	font-size: 12px;
+}
+.listli {
+	list-style: none;
+	display: inline-block;
+	// margin-right: 25px;
+	font-size: 10px;
+	color: #888888;
+	position: relative;
+	text-align: match-parent;
+	box-sizing: border-box;
+}
+
+.recipeLabel:after {
+	// position: 	;
+	// right: -14px;
+	// top: -2px;
+	// left: 10px;
+	margin-left: 10px;
+	content: "|";
+	color: #6b6b6b;
+}
+.recipeTitle {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 30px;
+	color: #111111;
+	font-weight: 600;
+	font-family: "Unna", serif;
+}
+
+.recipeDescription {
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 5px;
+}
+.recipeImg {
+	border-radius: 8px;
+	width: 200px;
+	height: 280px;
+	margin-bottom: 10px;
+	// height: auto;
+	// vertical-align: middle;
+}
