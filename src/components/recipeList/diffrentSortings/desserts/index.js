@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { recieveRecipes } from "../../actions/recieveRecipes";
-import RecipeItem from "./recipeItem";
+import { recieveRecipes } from "../../../../actions/recieveRecipes";
+import RecipeItem from "../../recipeItem";
 import { useSelector, useDispatch } from "react-redux";
-import "./style.scss";
-import { Pagination } from "./pagination";
+import "../../style.scss";
+import { Pagination } from "../../pagination";
 
-const RecipeList = (props) => {
+const Desserts = (props) => {
 	// pagination variables
 	const [perPage, setPerPage] = useState(6);
 	const [leftSlice, setLeftSlice] = useState(0);
@@ -26,9 +26,6 @@ const RecipeList = (props) => {
 
 	// setting pagination
 	const handleClick = (event) => {
-		// hooks are async, hence when I use (setCurrentPage) it changes with delay
-		// hence setLeftSlice runs before CurrentPage changes
-		// hence I need to use the variable directly
 		setCurrentPage(event.target.value);
 		setLeftSlice(event.target.value * perPage);
 		setRightSlice(event.target.value * perPage + perPage);
@@ -113,6 +110,7 @@ const RecipeList = (props) => {
 				<div className="row justify-content-centre">
 					{recipeList.length > 0 &&
 						recipeList
+							.filter((recipe) => recipe.recipe_type === "Dessert")
 							.sort(sortingFunc)
 							.map((recipe) => <RecipeItem {...recipe} key={recipe.id} />)
 							.slice(leftSlice, rightSlice)}
@@ -122,4 +120,4 @@ const RecipeList = (props) => {
 	);
 };
 
-export default RecipeList;
+export default Desserts;

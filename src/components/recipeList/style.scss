@@ -1,9 +1,40 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+
 .addItem {
-    font-weight: 600;
-    font-size: large;
+	font-weight: 600;
+	font-size: large;
 }
 
-.recipeList {
-    padding: 30px;
-    color: rgb(0, 0, 0)
+.recipeMain {
+	margin-bottom: 45px;
+	display: block;
+}
+
+.pagBorder {
+	margin-bottom: 20px;
+	border-bottom: 2px solid #ebebeb;
+	display: block;
+	padding-bottom: 10px;
+	// padding-top: 20px;
+}
+
+.listContainer {
+	border-top: 2px solid #ebebeb;
+	padding-top: 20px;
+}
+
+.perPage {
+	margin-right: 50px;
+}
+
+.paginationHelper {
+	margin-top: 0px;
+}
+
+@include media-breakpoint-down(sm) {
+	.paginationHelper {
+		margin-top: 10px;
+	}
 }

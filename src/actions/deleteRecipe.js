@@ -6,11 +6,13 @@ export const deleteRecipe = (id) => async (dispatch) => {
 	axios({
 		method: "delete",
 		url: link,
-	}).then((response) => {
-		const recipes = response.data;
+		headers: {
+			authorization: `Bearer ${localStorage.getItem("access")}`,
+		},
+	}).then(() => {
 		dispatch({
 			type: types.DELETE_RECIPE,
-			payload: recipes,
+			payload: id,
 		});
 	});
 };

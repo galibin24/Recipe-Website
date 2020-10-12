@@ -5,10 +5,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RecipeList from "./components/recipeList";
 import Header from "./components/header";
 import RecipePage from "./components/recipePage";
+import Register from "./components/Register";
+import LogIn from "./components/logIn";
+import Lunch from "./components/recipeList/diffrentSortings/lunch";
+import Dinner from "./components/recipeList/diffrentSortings/dinners";
+import Dessert from "./components/recipeList/diffrentSortings/desserts";
 import store from "./store";
-
+import { Logo } from "./components/header/logo";
 import "./style.scss";
-import Container from "react-bootstrap/Container";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -20,11 +24,18 @@ function App() {
 		<Provider store={store}>
 			<Router>
 				<Switch>
-					<Container>
+					<div>
 						<Header />
+						<Logo />
+						<Route path="/logIn" exact component={LogIn} />
+						<Route path="/register" exact component={Register} />
 						<Route path="/" exact component={RecipeList} />
+						<Route path="/lunch" exact component={Lunch} />
+						<Route path="/dinner" exact component={Dinner} />
+						<Route path="/dessert" exact component={Dessert} />
+
 						<Route path="/recipe/:id" component={RecipePage} />
-					</Container>
+					</div>
 				</Switch>
 			</Router>
 		</Provider>

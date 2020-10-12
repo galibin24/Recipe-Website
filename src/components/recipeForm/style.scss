@@ -24,28 +24,50 @@
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 	.content {
-		border: thick red;
+		border-radius: 10px;
+
+		display: flex;
+		flex-direction: column;
+		// border: thick red;
 		background-color: #fefefe;
 		margin: 15% auto; /* 15% from the top and centered */
+
 		padding: 20px;
-		// border: 1px solid #888;
-		width: 50%; /* Could be more or less, depending on screen size */
+		// border-style: border-box;
+		box-sizing: border-box;
+		border: 1px solid #888;
+		width: 40%; /* Could be more or less, depending on screen size */
 		.header {
 			font-size: 25px;
 			padding: 2px 16px;
 			margin: 3px;
-			background-color: #5cb85c;
-			color: white;
+			color: black;
+			font-family: "Franklin Gothic Medium";
 		}
 		.body {
+			// display: inline-block;
 			margin: 10px;
 			padding: 10px 16px;
 		}
 		.footer {
-			margin: 3px;
-			padding: 2px 16px;
-			background-color: #5cb85c;
+			// margin: 3px;
+			// padding: 2px 16px;
 			color: white;
+		}
+		.buttons {
+			margin: 10px;
+		}
+
+		.titleLabel {
+			font-size: 20px;
+			color: #111111;
+			font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+		}
+
+		.descriptionLabel {
+			font-size: 20px;
+			color: coral;
+			font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 		}
 	}
 }

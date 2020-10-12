@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import RecipeForm from "../recipeForm";
-import Button from "react-bootstrap/Button";
 
 const UpdateRecipe = (props) => {
 	const [show, setShow] = useState(false);
@@ -9,9 +8,9 @@ const UpdateRecipe = (props) => {
 	let Close = () => setShow(false);
 	return (
 		<div>
-			<Button className="button" onClick={Show}>
+			<button className="btn btn-warning recipeUpdateButton" onClick={Show}>
 				Change Recipe
-			</Button>
+			</button>
 			{show && <RecipeForm Close={Close} show={show} recipe={props.recipe} />}
 		</div>
 	);
