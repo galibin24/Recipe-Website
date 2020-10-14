@@ -56,7 +56,7 @@ const Header = (props) => {
 							</Link>
 						</div>
 						<div className="col name">
-							<Link to={"/"}>
+							<Link to={"/AboutUs"}>
 								<h4>About us</h4>
 							</Link>
 						</div>

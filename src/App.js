@@ -10,6 +10,7 @@ import LogIn from "./components/logIn";
 import Lunch from "./components/recipeList/diffrentSortings/lunch";
 import Dinner from "./components/recipeList/diffrentSortings/dinners";
 import Dessert from "./components/recipeList/diffrentSortings/desserts";
+import AboutUs from "./components/aboutUs";
 import store from "./store";
 import { Logo } from "./components/header/logo";
 import "./style.scss";
@@ -33,7 +34,7 @@ function App() {
 						<Route path="/lunch" exact component={Lunch} />
 						<Route path="/dinner" exact component={Dinner} />
 						<Route path="/dessert" exact component={Dessert} />
-
+						<Route path="/aboutUs" exact component={AboutUs} />
 						<Route path="/recipe/:id" component={RecipePage} />
 					</div>
 				</Switch>
