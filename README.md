@@ -1,6 +1,6 @@
 # Recipe_Website
 
-The gihub repo with backend version: https://github.com/galibin24/Recipe-Website.  
+The gihub repo with backend version: https://github.com/galibin24/Recipe_Website_Backend.  
 The website can be found here: https://nikitagalibinrecipes.tk/.
 
 ### General Description
